@@ -1,8 +1,9 @@
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
+    static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
         System.out.println("Welcome to the Easy Bank\n");
 
         Client client = new Client("Lucas Lessa", "Checking", 1500);
@@ -24,7 +25,8 @@ public class Main {
                     receiveFunds();
                     break;
                 case 3:
-                    transferFunds();
+                    double value = transferFunds(client.balance);
+                    client.setBalance(client.balance - value);
                     break;
                 case 4:
                     System.out.println("Thank you! See you later.");
@@ -43,8 +45,17 @@ public class Main {
         System.out.println("receiveFunds");
     }
 
-    private static void transferFunds() {
-        System.out.println("transferFunds");
+    private static double transferFunds(double balance) {
+        System.out.println("How much do you want to transfer?");
+        double value = input.nextDouble();
+
+        if (value > balance) {
+            System.out.println("You don't have enough balance for this transfer");
+            return 0;
+        } else {
+            System.out.println("transfer completed successfully");
+            return value;
+        }
     }
 
     public static void exibirMenu() {
