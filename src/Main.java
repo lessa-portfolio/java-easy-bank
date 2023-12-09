@@ -18,7 +18,7 @@ public class Main {
 
             switch (currentOption) {
                 case 1:
-                    checkBalance();
+                    checkBalance(client.balance);
                     break;
                 case 2:
                     receiveFunds();
@@ -35,8 +35,8 @@ public class Main {
         }
     }
 
-    private static void checkBalance() {
-        System.out.println("checkBalance");
+    private static void checkBalance(double balance) {
+        System.out.println("Your bank balance is $ " + balance);
     }
 
     private static void receiveFunds() {
