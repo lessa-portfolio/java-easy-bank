@@ -22,7 +22,8 @@ public class Main {
                     checkBalance(client.balance);
                     break;
                 case 2:
-                    receiveFunds();
+                    double deposit = receiveFunds();
+                    client.setBalance(client.balance + deposit);
                     break;
                 case 3:
                     double value = transferFunds(client.balance);
@@ -41,8 +42,14 @@ public class Main {
         System.out.println("Your bank balance is $ " + balance);
     }
 
-    private static void receiveFunds() {
-        System.out.println("receiveFunds");
+    private static double receiveFunds() {
+        System.out.println("How much do you want to deposit?");
+        double value = input.nextDouble();
+        if (value < 0) {
+            return 0;
+        } else {
+            return value;
+        }
     }
 
     private static double transferFunds(double balance) {
